@@ -6,7 +6,8 @@ module.exports = {
     entry: './src/app.jsx',
     output: {
         path: path.resolve(__dirname, './dist'),
-        filename: 'js/app.js'
+        filename: 'js/app.js',
+        publicPath: '/dist/'
     },
     module: {
         rules: [
@@ -70,5 +71,8 @@ module.exports = {
             name: 'common',
             filename: 'js/base.js'
         })
-    ]
+    ],
+    devServer: {
+        port: '8086'
+    }
 }

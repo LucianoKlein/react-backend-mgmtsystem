@@ -22,7 +22,8 @@
   },
   "scripts": {
     "webpack": "webpack",
-    "http": "http-server -c-1 ./dist/"
+    "http": "http-server -c-1 ./dist/",
+    "serve": "webpack-dev-server"
   },
   "dependencies": {
     "font-awesome": "^4.7.0",
