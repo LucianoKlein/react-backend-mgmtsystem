@@ -1,11 +1,12 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const webpack = require('webpack');
 module.exports = {
     entry: './src/app.jsx',
     output: {
         path: path.resolve(__dirname, './dist'),
-        filename: 'app.js'
+        filename: 'js/app.js'
     },
     module: {
         rules: [
@@ -39,7 +40,8 @@ module.exports = {
                     {
                         loader: 'url-loader',
                         options: {
-                            limit: 8192
+                            limit: 8192,
+                            name: 'resource/[name].[ext]'
                         }
                     }
                 ]
@@ -50,7 +52,8 @@ module.exports = {
                     {
                         loader: 'url-loader',
                         options: {
-                            limit: 8192
+                            limit: 8192,
+                            name: 'resource/[name].[ext]'
                         }
                     }
                 ]
@@ -62,10 +65,10 @@ module.exports = {
             template: './src/index.html',
 
         }),
-        new ExtractTextPlugin("index.css"),
+        new ExtractTextPlugin("css/[name].css"),
         new webpack.optimize.CommonsChunkPlugin({
             name: 'common',
-            filename: 'base.js'
+            filename: 'js/base.js'
         })
     ]
 }
