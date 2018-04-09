@@ -1,18 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-let names = ['Rosen', 'Geely', 'Jimin'];
-let jsx = (
-    <div>
-        {/*数组循环*/}
-        {
-            names.map((name, index) => <p key={index}>Hello, I am {name}</p>)
-        }
-
-    </div>
-);
+function Component() {
+    return <h1>hahahaha</h1>;
+}
+class ES6Component extends React.Component {
+    render() {
+        return <h1>I am hexin in es6</h1>
+    }
+}
 
 ReactDOM.render(
-    jsx,
+    <ES6Component/>,
     document.getElementById("app")
 )
