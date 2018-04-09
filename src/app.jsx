@@ -1,11 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import 'font-awesome/css/font-awesome.min.css';
-import './index.css';
-import './index.scss'
+
+let jsx = <div>jsx.....</div>;
+
 ReactDOM.render(
-    <div>
-        <h1>here here</h1>
-    </div>,
-    document.getElementById('app')
-)
+    jsx, 
+    document.getElementById("app")
+);
