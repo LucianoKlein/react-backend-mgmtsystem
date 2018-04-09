@@ -1,24 +1,33 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-class ES6Component extends React.Component {
+class Component extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            name: "Rosen"
+            name : 'hexin',
+            age: 18
         }
+        this.handleClick = this.handleClick.bind(this);
     }
+    handleClick() {
+        this.setState({
+            age: this.state.age + 1
+        })
+    };
     render() {
-        setTimeout(() => {
-            this.setState({
-                name: "ahhaha"
-            });
-        }, 2000);
-        return <h1>I am {this.state.name}</h1>
+        return (
+            <div>
+                <h1>I am {this.state.name}</h1>
+                <p>I am {this.state.age} years old</p>
+                <button onClick={this.handleClick}>加一岁</button>
+            </div>
+        );
     }
 }
-
 ReactDOM.render(
-    <ES6Component/>,
+    <div>
+        <Component/>
+    </div>,
     document.getElementById("app")
 )
