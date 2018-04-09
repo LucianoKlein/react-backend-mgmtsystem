@@ -1,13 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-let name = 'hexin';
-let flag = false;
+let names = ['Rosen', 'Geely', 'Jimin'];
 let jsx = (
     <div>
+        {/*数组循环*/}
         {
-            flag ? <p>I am {name}</p> : <p>I am not {name}</p>
+            names.map((name) => <p>Hello, I am {name}</p>)
         }
+
     </div>
 );
 
