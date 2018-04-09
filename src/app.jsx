@@ -1,12 +1,20 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-function Component() {
-    return <h1>hahahaha</h1>;
-}
 class ES6Component extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            name: "Rosen"
+        }
+    }
     render() {
-        return <h1>I am hexin in es6</h1>
+        setTimeout(() => {
+            this.setState({
+                name: "ahhaha"
+            });
+        }, 2000);
+        return <h1>I am {this.state.name}</h1>
     }
 }
 
