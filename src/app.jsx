@@ -6,7 +6,7 @@ let jsx = (
     <div>
         {/*数组循环*/}
         {
-            names.map((name) => <p>Hello, I am {name}</p>)
+            names.map((name, index) => <p key={index}>Hello, I am {name}</p>)
         }
 
     </div>
