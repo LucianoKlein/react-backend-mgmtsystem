@@ -8,19 +8,24 @@ class Component extends React.Component {
             name : 'hexin',
             age: 18
         }
-        this.handleClick = this.handleClick.bind(this);
     }
     handleClick() {
         this.setState({
             age: this.state.age + 1
         })
-    };
+    }
+    onValueChange(e) {
+        this.setState({
+            age: e.target.value 
+        })
+    }
     render() {
         return (
             <div>
                 <h1>I am {this.state.name}</h1>
                 <p>I am {this.state.age} years old</p>
-                <button onClick={this.handleClick}>加一岁</button>
+                <button onClick={(e) => {this.handleClick(e)}}>加一岁</button>
+                <input type="text" onChange={(e) => {this.onValueChange(e)}}/>
             </div>
         );
     }
