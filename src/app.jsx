@@ -1,69 +1,85 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-class Child1 extends React.Component {
-    constructor(props) {
-        super(props);
-    }
-    handleClick(e) {
-        this.props.onChild2BgColorChange('red');
-    }
-
-    render() {
-        return (
-            <div>
-                <button onClick={(e) => {this.handleClick(e)}}>改变Child2组件颜色</button>
-            </div>
-        );
-    }
-}
-
-class Child2 extends React.Component {
-    constructor(props) {
-        super(props);
-    }
-
-    render() {
-        return (
-            <div style={{background: this.props.bgColor}}>
-                <h1>Child2背景颜色: {this.props.bgColor}</h1>
-            </div>
-        );
-    }
-}
-
-class Father extends React.Component {
+class Son extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            child2BgColor: "#999"
-        }
+            data: 'Old Props'
+        };
+        console.log('初始化数据，constructor');
     }
-    changeChild2BgColor(color) {
-        this.setState({
-            child2BgColor: color
-        })
+    handleClick() {
+        console.log('更新父组件数据');
+
     }
-    render(props) {
+    componentWillMount() {
+        console.log('componentWillMount');
+    }
+    componentDidMount() {
+        console.log('componentDidMount');
+    }
+    componentWillUnmount() {
+        console.log('componentWillUnmount');
+    }
+    componentWillReceiveProps() {
+        console.log('componentWillReceiveProps');
+    }
+    shouldComponentUpdate() {
+        console.log('shouldComponentUpdate');
+        return true;
+    }
+    componentWillUpdate() {
+        console.log('componentWillUpdate');
+    }
+    componentDidUpdate() {
+        console.log('componentDidUpdate');
+    }
+    render() {
+        console.log('render');
         return (
             <div>
-                <Child1 onChild2BgColorChange={(color) => {this.changeChild2BgColor(color)}}/>
-                <Child2 bgColor={this.state.child2BgColor}/>
+                <div>Props: {this.props.data}</div>
+                <button onClick={() => { this.handleClick() }}>更新组件</button>
             </div>
         )
     }
 }
 
-class App extends React.Component {
+class App2 extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            data: 'Old Props',
+            hasChild: true
+        }
+        console.log('初始化数据', 'constructor');
+    }
+    onPropsChange() {
+       console.log("父组件的onPropsChange调用了");
+       this.setState({
+            data: 'New New Props'
+       }) 
+    }
+    onDestroyChild() {
+        console.log('干掉子组件');
+        this.setState({
+            hasChild: false
+        })
+    }
     render() {
         return (
-            <div>
-                <Father/>
-            </div>
-        );
+        <div>
+            {
+                this.state.hasChild ? <Son data = {this.state.data}></Son> : null
+            }
+            <button onClick={() => { this.onPropsChange() }}>改变Props</button>
+            <button onClick={() => { this.onDestroyChild() }}>干掉子组件</button>
+        </div>) ;
     }
 }
+
 ReactDOM.render(
-    <App/>,
+    <App2/>,
     document.getElementById("app")
 )
