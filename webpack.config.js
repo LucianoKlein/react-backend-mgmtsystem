@@ -70,7 +70,7 @@ module.exports = {
     plugins: [
         new HtmlWebpackPlugin({
             template: './src/index.html',
-
+            favicon: './favicon.ico'
         }),
         new ExtractTextPlugin("css/[name].css"),
         new webpack.optimize.CommonsChunkPlugin({
