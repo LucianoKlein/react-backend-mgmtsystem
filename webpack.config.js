@@ -9,6 +9,12 @@ module.exports = {
         filename: 'js/app.js',
         publicPath: '/dist/'
     },
+    resolve: {
+        alias: {
+            page     : path.resolve(__dirname, 'src/pages'),
+            component: path.resolve(__dirname, 'src/component')
+        }
+    },
     module: {
         rules: [
             {
@@ -73,6 +79,9 @@ module.exports = {
         })
     ],
     devServer: {
-        port: '8086'
+        port: '8086',
+        historyApiFallback: {
+            index: '/dist/index.html'
+        }
     }
 }
