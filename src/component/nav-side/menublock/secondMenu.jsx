@@ -7,10 +7,13 @@ class SecondMenu extends React.Component {
     }
 
     render() {
-        <ul className={["nav", "nav-second-level", "nav", "collapse ", "in"]}>
+        return (
+        <ul className="nav nav-second-level nav collapse in">
             <li>
-                <NavLink exact to={this.props.link} activeClassName="active-menu">{this.props.menuName}</NavLink>
+                <NavLink exact to={this.props.menuObj.link} activeClassName="active-menu">{this.props.menuObj.menuName}</NavLink>
             </li>
         </ul>
+        );
     }
 }
+export default SecondMenu;

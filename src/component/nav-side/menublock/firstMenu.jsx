@@ -9,13 +9,15 @@ class FirstMenu extends React.Component {
     render() {
         return (
             <li>
-                <NavLink exact to={this.props.link} activeClassName="active-menu" >
+                <NavLink exact to={this.props.menuObj.link} activeClassName="active-menu" >
                     <i className="fa fa-edit"></i>
-                    <span>{this.props.menuName}</span>
-                    {
-                        this.props.hashChild ? console.log("yes") : null
-                    }
+                    <span>{this.props.menuObj.menuName}</span>
                 </NavLink>
+                    {
+                        this.props.menuObj.hasChild ? this.props.menuObj.sub.map((element, index)=>{
+                            return <SecondMenu key={index} menuObj={element}/>
+                        }) : null
+                    }
             </li>
         );
     }
