@@ -9,6 +9,13 @@ class User {
             data: loginInfo
         })
     }
+    //退出登录
+    logout() {
+        return _mm.request({
+            type: 'post',
+            url: '/user/logout.do'
+        })
+    }
     //检查登录接口的数据是不是合法
     checkLoginInfo(loginInfo) {
         let username = $.trim(loginInfo.username),
