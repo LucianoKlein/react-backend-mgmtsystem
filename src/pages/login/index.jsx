@@ -1,13 +1,21 @@
 import React from 'react';
 import './index.scss';
+import MUtil from 'util/mm.jsx'
+import User  from 'service/user-service.jsx'
+const _mm = new MUtil();
+const _user = new User();
 
 class Login extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             username: '',
-            password: ''
+            password: '',
+            redirect: _mm.getUrlParam('redirect') || '/'
         }
+    }
+    componentWillMount() {
+        document.title = '登录 - MMAL ADMIN'
     }
     //当用户名发生改变
     onInputChange(e) {
@@ -17,8 +25,28 @@ class Login extends React.Component {
             [inputName] : inputValue
         })
     }
+    onInputKeyUp(e) {
+        if (e.keyCode === 13) {
+            this.onSubmit();
+        }
+    }
     onSubmit(e) {
-
+        let loginInfo = {
+            username: this.state.username,
+            password: this.state.password
+        };
+        let checkResult = _user.checkLoginInfo(loginInfo);
+        //验证通过
+        if (checkResult.status) {
+            _user.login(loginInfo).then((res) => {
+                this.props.history.push(this.state.redirect);
+            }, (errMsg) => {
+                _mm.errorTips(errMsg);
+            });
+        } else {
+            //验证不通过
+            _mm.errorTips(checkResult.msg)
+        }
     }
     render() {
         return (
@@ -33,7 +61,8 @@ class Login extends React.Component {
                                        className="form-control" 
                                        id="exampleInputEmail1" 
                                        placeholder="Email" 
-                                       name="username"
+                                       name="username" 
+                                       onKeyUp={e => this.onInputKeyUp(e)}
                                        onChange={e => this.onInputChange(e)}/>
                             </div>
                             <div className="form-group">
@@ -43,9 +72,10 @@ class Login extends React.Component {
                                        id="exampleInputPassword1" 
                                        placeholder="Password" 
                                        name="password"
+                                       onKeyUp={e => this.onInputKeyUp(e)}
                                        onChange={e => this.onInputChange(e)}/>
                             </div>
-                            <button onClick={e => onSubmit(e)} className="btn btn-md btn-primary btn-block">Login</button>
+                            <button onClick={e => this.onSubmit(e)} className="btn btn-md btn-primary btn-block">Login</button>
                         </div>
                     </div>
                 </div>
