@@ -32,8 +32,8 @@ class NavTop extends React.Component {
                             <i className="fa fa-user fa-fw"></i> 
                             {
                                 this.state.username  
-                                ? <span>欢迎{this.state.username}</span> 
-                                : <span>欢迎您</span> 
+                                ? <span>Welcome, {this.state.username}</span> 
+                                : <span>Welcome visitor!</span> 
 
                             }
                             <i className="fa fa-caret-down"></i>

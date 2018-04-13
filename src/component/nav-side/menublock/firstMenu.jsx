@@ -10,7 +10,7 @@ class FirstMenu extends React.Component {
         return (
             <li>
                 <NavLink exact to={this.props.menuObj.link} >
-                    <i className="fa fa-edit"></i>
+                    <i className={`fa fa-${this.props.menuObj.classType}`}></i>
                     <span>{this.props.menuObj.menuName}</span>
                 </NavLink>
                     {

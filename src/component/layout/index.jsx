@@ -14,11 +14,13 @@ class Layout extends React.Component {
                     {
                         menuName: "Home",
                         hasChild: false,
+                        classType: "dashboard",
                         link: "/"
                     },
                     {
                         menuName: "Product",
                         hasChild: true,
+                        classType: "list",
                         link: "/product",
                         sub: [
                             {
@@ -34,6 +36,7 @@ class Layout extends React.Component {
                     },
                     {
                         menuName: "Orders",
+                        classType: "check-square-o",
                         hasChild: true,
                         link: "/order",
                         sub: [
@@ -45,6 +48,7 @@ class Layout extends React.Component {
                     },
                     {
                         menuName: "User",
+                        classType: "user-o",
                         hasChild: true,
                         link: "/user",
                         sub: [
