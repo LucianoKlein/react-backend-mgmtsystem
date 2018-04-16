@@ -5,6 +5,7 @@ import Statistic from 'service/statistic-service.jsx';
 import PageTitle from 'component/page-title/index.jsx';
 import Pagination from 'util/pagination/index.jsx';
 import User from 'service/user-service.jsx';
+import TableList from 'util/table-list/index.jsx';
 
 const _mm = new MUtil();
 const _user = new User();
@@ -24,11 +25,7 @@ class UserList extends React.Component {
     }
     loadUserList() {
         _user.getUserList(this.state.pageNum).then(res => {
-            this.setState(res, ()=>{
-                this.setState({
-                    firstLoading: false
-                })
-            });
+            this.setState(res);
         }, (errMsg) => {
             this.setState({
                 list: []
@@ -68,26 +65,9 @@ class UserList extends React.Component {
         return (
             <div id="page-wrapper">
                 <PageTitle title="User List"/>
-                <div className="row">
-                    <div className="col-md-12">
-                        <table className="table table-striped table-bordered">
-                            <thead>
-                                <tr>
-                                    <th>ID</th>
-                                    <th>Username</th>
-                                    <th>Email</th>
-                                    <th>Telephone</th>
-                                    <th>Registration Time</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {
-                                    tableBody
-                                }
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
+                <TableList tableHeads={["ID", "Username", "Email", "Telephone", "Registration Time"]}>
+                    {listBody}
+                </TableList>
                 <Pagination current={this.state.pageNum} 
                             total={this.state.total} 
                             onChange={(pageNum) => this.onPageNumChange(pageNum)}></Pagination>

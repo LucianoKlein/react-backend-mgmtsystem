@@ -21,11 +21,11 @@ class Layout extends React.Component {
                         menuName: "Product",
                         hasChild: true,
                         classType: "list",
-                        link: "/product",
+                        link: "/product/index",
                         sub: [
                             {
                                 menuName: "Product Management",
-                                link: "/product"
+                                link: "/product/index"
                             },
                             {
                                 menuName: "Category Management",
@@ -50,11 +50,11 @@ class Layout extends React.Component {
                         menuName: "User",
                         classType: "user-o",
                         hasChild: true,
-                        link: "/user",
+                        link: "/user/index",
                         sub: [
                             {
                                 menuName: "User Management",
-                                link: "/user"
+                                link: "/user/index"
                             }
                         ]
                     }

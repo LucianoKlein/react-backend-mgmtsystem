@@ -33,7 +33,7 @@ class Home extends React.Component {
                 <PageTitle title="Home"/>
                 <div className="row">
                     <div className="col-md-4">
-                        <Link to="/user" className="color-box brown">
+                        <Link to="/user/index" className="color-box brown">
                             <p className="count">{this.state.userCount}</p>
                             <p className="desc">
                                 <i className="fa fa-user-o"></i>
