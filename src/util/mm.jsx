@@ -19,7 +19,7 @@ class MUtil {
                        typeof reject === 'function' && reject(res.msg || res.data);
                     }
                 },
-                errort: (err) => {
+                error: (err) => {
                     typeof reject === 'function' && reject(err.statusText);
                 }
             }) 
@@ -37,10 +37,10 @@ class MUtil {
         return result ? decodeURIComponent(result[2]) : null;
     }
     errorTips(errMsg) {
-        alert(errMsg || '好像哪里不对了');
+        console.error(errMsg || '好像哪里不对了');
     }
     successTips(successMsg) {
-        alert(successMsg || '操作成功');
+        console.error(successMsg || '操作成功');
     }
     setStorage(name, data) {
         let dataType = typeof data;
