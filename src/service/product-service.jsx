@@ -36,6 +36,52 @@ class Product {
             }
         });
     }
+    checkProduct(product) {
+        let result = {
+            status: true,
+            msg: 'Verify success'
+        }
+        if (typeof product.name !== 'string' || product.name.length === 0) {
+            return {
+                status: false,
+                msg: 'Product name cannot be empty!'
+            }
+        }
+        if (typeof product.subtitle !== 'string' || product.subtitle.length === 0) {
+            return {
+                status: false,
+                msg: 'Product subtitle cannot be empty!'
+            }
+        }
+        if (typeof product.categoryId !== 'number' || !(product.categoryId > 0)) {
+            return {
+                status: false,
+                msg: 'category id cannot be empty!'
+            }
+        }
+        if (typeof product.price !== 'number' || !(product.price >= 0)) {
+            return {
+                status: false,
+                msg: 'Product price is invalid!'
+            }
+        }
+
+        if (typeof product.stock !== 'number' || !(product.stock >= 0)) {
+            return {
+                status: false,
+                msg: 'Product stock cannot be empty!'
+            }
+        }
+        return result;
+
+    }
+    saveProduct(product) {
+        return _mm.request({
+            type: 'post',
+            url: '/manage/product/save.do',
+            data: product
+        })
+    }
 }
 
 export default Product;

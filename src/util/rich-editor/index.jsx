@@ -1,23 +1,44 @@
 
 import React from 'react';
-import RcPagination from 'rc-pagination';
-import 'rc-pagination/dist/rc-pagination.min.css';
+import Simditor from 'simditor';
+import 'simditor/styles/simditor.scss';
+
 //通用分页组件
-class Pagination extends React.Component {
+class RichEditor extends React.Component {
+
     constructor(props) {
         super(props);
     }
+
+    componentDidMount() {
+        this.loadEditor();
+    }
+    loadEditor() {
+        let element = this.refs['textarea'];
+        this.simeditor = new Simditor({
+            textarea: $(element),
+            defaultValue: this.props.placeholder || 'Please Input your description',
+            upload: {
+                url: '/manage/product/richtext_img_upload.do',
+                defaultImage: '',
+                fileKey: 'upload_file'
+            }
+        });
+        this.bindEditorEvent();
+    }
+    bindEditorEvent() {
+        this.simeditor.on('valuechanged', e => {
+            this.props.onValueChange(this.simeditor.getValue());
+        })
+
+    }
     render() {
         return (
-            <div className="row">
-                <div className="col-md-12">
-                    <RcPagination {...this.props} 
-                        hideOnSinglePage
-                        showQuickJumper/>
-                </div>
+            <div className="rich-editor">
+                <textarea ref="textarea"></textarea>
             </div>
         )
     }
 }
 
-export default Pagination;
+export default RichEditor;

@@ -37,6 +37,7 @@ class MUtil {
         return result ? decodeURIComponent(result[2]) : null;
     }
     errorTips(errMsg) {
+        alert(errMsg || '好像哪里不对了');
         console.error(errMsg || '好像哪里不对了');
     }
     successTips(successMsg) {
