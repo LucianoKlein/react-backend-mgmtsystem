@@ -17,6 +17,7 @@ module.exports = {
             service  : path.resolve(__dirname, 'src/service')
         }
     },
+    devtool: 'eval-source-map',
     module: {
         rules: [
             {

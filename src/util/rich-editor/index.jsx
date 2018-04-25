@@ -2,6 +2,7 @@
 import React from 'react';
 import Simditor from 'simditor';
 import 'simditor/styles/simditor.scss';
+import './index.scss';
 
 //通用分页组件
 class RichEditor extends React.Component {
@@ -12,6 +13,11 @@ class RichEditor extends React.Component {
 
     componentDidMount() {
         this.loadEditor();
+    }
+    componentWillReceiveProps(nextProps) {
+        if (this.props.defaultDetail !== nextProps.defaultDetail) {
+            this.simeditor.setValue(nextProps.defaultDetail);
+        }
     }
     loadEditor() {
         let element = this.refs['textarea'];

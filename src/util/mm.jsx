@@ -37,11 +37,12 @@ class MUtil {
         return result ? decodeURIComponent(result[2]) : null;
     }
     errorTips(errMsg) {
-        alert(errMsg || '好像哪里不对了');
-        console.error(errMsg || '好像哪里不对了');
+        // alert(errMsg || '好像哪里不对了');
+        console.debug(errMsg || '好像哪里不对了');
     }
     successTips(successMsg) {
-        console.error(successMsg || '操作成功');
+        // alert(errMsg || '好像哪里不对了');
+        console.debug(successMsg || '操作成功');
     }
     setStorage(name, data) {
         let dataType = typeof data;
